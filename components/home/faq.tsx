@@ -8,7 +8,7 @@ import {
 export default function FaqSection() {
     return (
         <section className="relative py-32 bg-white">
-            <div className="container mx-auto px-6 max-w-4xl">
+            <div className="container mx-auto py-4 px-6 max-w-4xl">
 
                 {/* Heading */}
                 <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
@@ -19,7 +19,7 @@ export default function FaqSection() {
                 <Accordion
                     type="single"
                     collapsible
-                    className="space-y-4"
+                    className="space-y-4  py-4"
                 >
                     <FaqItem
                         value="item-1"
@@ -56,6 +56,7 @@ export default function FaqSection() {
                         question="How do colleges collaborate with WMO?"
                         answer="Colleges partner with WMO to share student talent pools, receive market trend insights, and provide students with real-world exposure."
                     />
+                    <div className="h-2"></div>
                 </Accordion>
             </div>
         </section>

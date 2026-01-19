@@ -2,14 +2,15 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardContent as CardContentComponent } from "@/components/ui/card";
 import { ArrowRight, Briefcase, GraduationCap, Sparkles, User, Users } from "lucide-react";
-import FaqSection from "./faq";
-import Footer from "./footer";
-import Header from "./header";
+import FaqSection from "../components/home/faq";
+import Footer from "../components/global/footer";
+import Header from "../components/global/header";
+import WMOFeaturesSection from "../components/home/freaturedSection";
+import HowWMOWorks from "../components/home/whoWork";
 
 export default function Home() {
   return (
     <>
-      <Header />
       <div className="relative overflow-hidden bg-white">
 
         {/* DOTTED BACKGROUND */}
@@ -77,8 +78,8 @@ export default function Home() {
         </div>
       </div>
       <BelowHero />
+      <WMOFeaturesSection />
       <FaqSection />
-      <Footer />
     </>
   );
 }
@@ -172,7 +173,7 @@ export function BelowHero() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section className="py-28 max-w-7xl mx-auto bg-white">
+      {/* <section className="py-28 max-w-7xl mx-auto bg-white">
         <div className="container mx-auto px-6">
           <h2 className="text-4xl font-bold text-center mb-16">
             How WMO Works
@@ -200,7 +201,8 @@ export function BelowHero() {
             />
           </div>
         </div>
-      </section>
+      </section> */}
+      <HowWMOWorks />
 
       {/* WHO IT'S FOR */}
       <section className="relative py-28 bg-gray-50">

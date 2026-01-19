@@ -53,6 +53,17 @@ export default function SignupForm() {
                         required
                     />
                 </div>
+                <div>
+                    <label className="text-sm font-medium">
+                        Confirm Password
+                    </label>
+                    <Input
+                        type="password"
+                        className="h-12 mt-1"
+                        placeholder="••••••••"
+                        required
+                    />
+                </div>
 
                 <Button
                     size="lg"
