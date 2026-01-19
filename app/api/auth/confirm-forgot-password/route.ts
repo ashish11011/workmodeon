@@ -6,12 +6,12 @@ export async function POST(req: Request) {
     const { email, code, newPassword } = body;
 
     if (!email || !code || !newPassword) {
-        return NextResponse.json({ error: 'email, code, and new password are required.' });
+        return NextResponse.json({ message: 'email, code, and new password are required.' }, { status: 400 });
     }
     try {
         await cognitoConfirmForgotPassword({ email, code, newPassword });
 
-        return NextResponse.json({ message: 'Password reset successful.' });
+        return NextResponse.json({ message: 'Password reset successful.' }, { status: 200 });
     } catch (err: any) {
         console.error('ConfirmForgotPassword error:', err);
         return NextResponse.json({ message: err.message }, { status: 500 });

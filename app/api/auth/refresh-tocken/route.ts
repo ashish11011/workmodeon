@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     const { refreshToken, username } = body;
 
     if (!refreshToken)
-        return NextResponse.json({ error: 'Refresh token is required.' });
+        return NextResponse.json({ message: 'Refresh token is required.' }, { status: 400 });
 
     try {
         const secretHash = await generateSecretHash(username);
@@ -23,9 +23,9 @@ export async function POST(req: Request) {
 
         const response = await cognito.send(command);
 
-        return NextResponse.json({ response: response });
+        return NextResponse.json({ response: response }, { status: 200 });
     } catch (err: any) {
         console.error('refreshToken error:', err);
-        return NextResponse.json({ error: err.message }, { status: 500 });
+        return NextResponse.json({ message: err.message }, { status: 500 });
     }
 }

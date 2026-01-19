@@ -2,11 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardContent as CardContentComponent } from "@/components/ui/card";
 import { ArrowRight, Briefcase, GraduationCap, Sparkles, User, Users } from "lucide-react";
-import FaqSection from "../components/home/faq";
-import Footer from "../components/global/footer";
-import Header from "../components/global/header";
-import WMOFeaturesSection from "../components/home/freaturedSection";
-import HowWMOWorks from "../components/home/whoWork";
+import WMOFeaturesSection from "@/components/home/freaturedSection";
+import FaqSection from "@/components/home/faq";
+import HowWMOWorks from "@/components/home/whoWork";
+
 
 export default function Home() {
   return (
@@ -172,36 +171,6 @@ export function BelowHero() {
         </div>
       </section>
 
-      {/* HOW IT WORKS */}
-      {/* <section className="py-28 max-w-7xl mx-auto bg-white">
-        <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-16">
-            How WMO Works
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-12">
-            <StepCard
-              title="For Companies"
-              steps={[
-                "Create company profile",
-                "Post jobs, internships or freelance tasks",
-                "Discover candidates via smart filters",
-                "Hire instantly or notify for quick work"
-              ]}
-            />
-
-            <StepCard
-              title="For Candidates"
-              steps={[
-                "Create your skill-based profile",
-                "Search or swipe through opportunities",
-                "Chatbot helps discover relevant work",
-                "Apply or upload portfolio instantly"
-              ]}
-            />
-          </div>
-        </div>
-      </section> */}
       <HowWMOWorks />
 
       {/* WHO IT'S FOR */}

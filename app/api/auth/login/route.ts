@@ -6,10 +6,10 @@ export async function POST(req: Request) {
     const { email, password } = body;
     try {
         const data = await authSingIn({ email, password });
-
-        return NextResponse.json(data);
+        console.log(data, "data")
+        return NextResponse.json(data, { status: 200 });
     } catch (err: any) {
-        console.error(err);
-        return NextResponse.json({ error: err.message });
+        console.log(err, "err")
+        return NextResponse.json({ message: err.message }, { status: 500 });
     }
 }

@@ -10,7 +10,7 @@ export async function POST(req: Request) {
         return NextResponse.json({
             message: 'Password reset code sent to your email.',
             delivery: response.CodeDeliveryDetails,
-        });
+        }, { status: 200 });
     } catch (err: any) {
         console.error('ForgotPassword error:', err);
         return NextResponse.json({ message: err.message }, { status: 500 });

@@ -7,15 +7,45 @@ import VerifyOtpForm from "./verifyOTP"
 
 export default function SignupForm() {
     const [step, setStep] = useState<"signup" | "otp">("signup")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState("")
 
-    const handleSignup = (e: React.FormEvent) => {
+    const handleSignup = async (e: React.FormEvent) => {
         e.preventDefault()
-        // TODO: call signup API → send OTP
-        setStep("otp")
+        setError("")
+
+        if (password !== confirmPassword) {
+            setError("Passwords do not match")
+            return
+        }
+
+        setLoading(true)
+        try {
+            const res = await fetch("/api/auth/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password }),
+            })
+
+            const data = await res.json()
+
+            if (!res.ok) {
+                throw new Error(data.message || "Signup failed")
+            }
+
+            setStep("otp")
+        } catch (err: any) {
+            setError(err.message)
+        } finally {
+            setLoading(false)
+        }
     }
 
     if (step === "otp") {
-        return <VerifyOtpForm />
+        return <VerifyOtpForm email={email} />
     }
 
     return (
@@ -29,6 +59,8 @@ export default function SignupForm() {
                 Impedit, voluptate.
             </p>
 
+            {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+
             <form onSubmit={handleSignup} className="mt-8 space-y-4">
                 <div>
                     <label className="text-sm font-medium">
@@ -39,6 +71,8 @@ export default function SignupForm() {
                         className="h-12 mt-1"
                         placeholder="hello@example.com"
                         required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
 
@@ -51,6 +85,8 @@ export default function SignupForm() {
                         className="h-12 mt-1"
                         placeholder="••••••••"
                         required
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
                 <div>
@@ -62,14 +98,17 @@ export default function SignupForm() {
                         className="h-12 mt-1"
                         placeholder="••••••••"
                         required
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                 </div>
 
                 <Button
                     size="lg"
                     className="w-full h-12 mt-2 rounded-full bg-black hover:bg-neutral-800"
+                    disabled={loading}
                 >
-                    Create account
+                    {loading ? "Creating account..." : "Create account"}
                 </Button>
             </form>
 
